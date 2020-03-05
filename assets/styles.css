@@ -1,0 +1,15 @@
+h1 {
+  color: blue;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  padding-bottom: 20px;
+  border: 1px solid gray;
+}
+
+#january > #d31 {
+  background-color: gray;
+}
