@@ -102,3 +102,7 @@ p {
 button {
   margin-left: 20px;
 }
+
+.selected {
+  border: 2px solid red;
+}

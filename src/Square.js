@@ -1,15 +1,22 @@
 import React from 'react';
+import classNames from 'classnames';
 
-function Square({ day, setSelectedDay, selected, mood }) {
-  const className = `${day.mood} day`;
+function Square({ day, setSelectedDay, selectedDay, selected }) {
+  var squareClass = classNames('day', day.mood, {
+    selected: selected,
+  });
 
   return (
     <div
       key={day.id}
-      className={className}
+      className={squareClass}
       onClick={() => {
         console.log('clicked on square and day is', day);
-        setSelectedDay(day);
+        const dayClone = { ...day };
+        console.log('clickedDay is', dayClone);
+        setSelectedDay(dayClone);
+        console.log('selected day is', selectedDay);
+        console.log(squareClass);
       }}
     ></div>
   );

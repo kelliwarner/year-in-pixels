@@ -5,12 +5,11 @@ import Square from './Square';
 
 //CURRENT GOAL:
 
-// see if state is updating correctly bc seems like it isnt rerendering when
-//state is reset because it doesnt change color unless you click somewhere else
+// fix state for 'selected' - this will allow for my selected state (red border)
+// to work as well as the message that says 'you've selected X date'
 
 //WANT TO ADD LATER:
-// want form element to be hidden (display:none?)
-// onclick - will update form display so that it shows and text says "select your mood for (the date here)"
+// want form element to be hidden (display:none?) until a square is clicked
 
 const App = () => {
   const [daysInMonth, setDaysInMonth] = useState([]);
@@ -310,7 +309,7 @@ const App = () => {
     );
     datesInJanuary[indexOfDayInJanuary] = updatedDayObj;
     console.log(datesInJanuary);
-    setJanuary(datesInJanuary);
+    setJanuary([...datesInJanuary]);
   };
 
   const stringifyDate = day => moment(day).format('dddd, MMMM Do YYYY');
@@ -359,7 +358,6 @@ const App = () => {
                 setSelectedDay={setSelectedDay}
                 selectedDay={selectedDay}
                 selected={day === selectedDay}
-                mood={day.mood}
               />
             ))}
           </div>
