@@ -298,12 +298,8 @@ const App = () => {
     console.log('selected day is', selectedDay);
     e.preventDefault();
     const selectedMood = e.target[0].value;
-    updateMoodObj(selectedDay, selectedMood);
-  };
-
-  const updateMoodObj = (dayObj, selectedMood) => {
-    if (dayObj.date.month() === 0) {
-      let updatedDay = { ...dayObj, mood: selectedMood };
+    if (selectedDay.date.month() === 0) {
+      let updatedDay = { ...selectedDay, mood: selectedMood };
       updateMoodState(updatedDay);
     }
   };
