@@ -1,15 +1,104 @@
 h1 {
-  color: blue;
+  color: indianred;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgrey;
+}
+
+#display-pixels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+#create-pixel {
+  padding: 20px;
+}
+
+.year {
+  display: flex;
 }
 
 .day {
   display: flex;
-  flex-direction: column;
-  width: 20px;
-  padding-bottom: 20px;
+  flex-direction: row;
+  width: 25px;
+  height: 25px;
   border: 1px solid gray;
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#january > #d31 {
+.month-header {
+  display: flex;
+  flex-direction: row;
+  width: 25px;
+  height: 25px;
+  border: 1px solid gray;
+  color: white;
+  background-color: indianred;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-a-day {
+  display: flex;
+  flex-direction: row;
+  width: 25px;
+  padding-bottom: 25px;
+  border: 1px solid gray;
   background-color: gray;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-display {
+  display: flex;
+}
+
+.form-hidden {
+  display: none;
+}
+
+.happy {
+  background-color: yellow;
+}
+
+.meh {
+  background-color: green;
+}
+
+.sad {
+  background-color: blue;
+}
+
+.angry {
+  background-color: red;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+button {
+  margin-left: 20px;
 }
