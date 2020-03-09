@@ -14,8 +14,6 @@ const sync = async () => {
     date DATE,
     mood VARCHAR(255)
   );
-
-
 `;
   await client.query(SQL);
 };
@@ -34,8 +32,20 @@ const createMood = async mood => {
   return response.rows[0];
 };
 
+const updateMood = async mood => {
+  console.log('in updateMood, req.body is', mood);
+  const SQL = `
+  UPDATE daily_mood
+SET mood = $1
+WHERE id=${mood.id} returning *
+  `;
+  const response = await client.query(SQL, [mood.mood]);
+  console.log(response);
+};
+
 module.exports = {
   sync,
   readMoods,
   createMood,
+  updateMood,
 };

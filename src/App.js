@@ -6,11 +6,9 @@ import axios from 'axios';
 
 //CURRENT GOAL:
 
-// fix state for 'selected' - this will allow for my selected state (red border)
-// to work as well as the message that says 'you've selected X date'
-
-//WANT TO ADD LATER:
-// want form element to be hidden (display:none?) until a square is clicked
+// Look at errors from post & put
+// Then work on get
+// add a delete
 
 const App = () => {
   const [daysInMonth, setDaysInMonth] = useState([]);
@@ -88,8 +86,9 @@ const App = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(selectedDay);
+    console.log('in onsubmit, selectedDay.mood is', selectedDay.mood);
     if (selectedDay.mood === '') {
+      console.log('mood is empty string');
       createMood(e);
     } else {
       changeMood(e, selectedDay);
@@ -108,7 +107,6 @@ const App = () => {
   const changeMood = async (e, selectedDay) => {
     const selectedMood = e.target[0].value;
     let updatedDay = { ...selectedDay, mood: selectedMood };
-    updateMoodState(updatedDay);
     await axios
       .put(`/api/daily-moods/${updatedDay.id}`, updatedDay)
       .then(updateMoodState(updatedDay));
@@ -201,31 +199,41 @@ const App = () => {
     }
   };
 
-  // const stringifyDate = day => moment(day).format('dddd, MMMM Do YYYY');
+  function isEmpty(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  }
+  const stringifyDate = day => moment(day).format('dddd, MMMM Do, YYYY');
 
-  // const instructions = () => {
-  //   if (!stringifyDate) {
-  //     return <p>To add a mood, please choose a day.</p>;
-  //   } else {
-  //     return (
-  //       <p>
-  //         You have selected {selectedDay.date._d}. <br />
-  //         Please enter your mood for this day.
-  //       </p>
-  //     );
-  //   }
-  // };
+  const instructions = () => {
+    if (isEmpty(selectedDay)) {
+      return (
+        <p>
+          To add a mood, please choose a day.
+          <br />
+        </p>
+      );
+    } else {
+      return (
+        <p>
+          You have selected {stringifyDate(selectedDay.date)}. <br />
+          Please set your mood for this day.
+        </p>
+      );
+    }
+  };
+  {
+    console.log('selected day is', selectedDay);
+  }
 
   return (
     <div id="main-container">
       <div id="display-pixels">
         <h1>My Year in Pixels</h1>
         <div id="create-pixel">
-          <p>This will say please select a date.</p>
-          <p>
-            After you select a date, it will say 'you have selected X date,
-            please choose a mood'.
-          </p>
+          {instructions()}
           <Form onSubmit={onSubmit} selectedDay={selectedDay} />
         </div>
         <div className="year" id="y2020">

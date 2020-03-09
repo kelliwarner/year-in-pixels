@@ -10,7 +10,7 @@ function Form({ onSubmit }) {
           <option>Sad</option>
           <option>Angry</option>
         </select>
-        <button>Add Mood</button>
+        <button>Set Mood</button>
       </form>
     </div>
   );

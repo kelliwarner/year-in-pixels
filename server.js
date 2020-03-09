@@ -28,9 +28,16 @@ app.get('/api/daily-moods', (req, res, next) => {
 });
 
 app.post('/api/daily-moods', (req, res, next) => {
-  console.log('in db.js, req.body is', req.body);
   db.createMood(req.body)
     .then(mood => res.send(mood))
+    .catch(next);
+});
+
+app.put('/api/daily-moods/:id', (req, res, next) => {
+  db.updateMood(req.body)
+    .then(response => {
+      res.status(200).send(response);
+    })
     .catch(next);
 });
 
