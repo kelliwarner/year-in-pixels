@@ -16,7 +16,7 @@ function Square({ day, setSelectedDay, selectedDay, selected }) {
         console.log('clickedDay is', dayClone);
         setSelectedDay(dayClone);
         console.log('selected day is', selectedDay);
-        console.log(squareClass);
+        console.log('squareclass is', squareClass);
       }}
     ></div>
   );

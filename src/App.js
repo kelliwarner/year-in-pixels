@@ -50,22 +50,11 @@ const App = () => {
   // to the day object when it is created
 
   // then when do the 'get' in useeffect on front end,
-  // can `set${month}()`
+  // can then if month is jan , set jan?
 
   useEffect(() => {
     const response = axios.get('/api/daily-moods').then(response => {
       console.log(response.data);
-      response.data.forEach(day => {
-        console.log(day.date.charAt(5).concat(day.date.charAt(6)));
-        if (day.date.charAt(5).concat(day.date.charAt(6)) === '01') {
-          const indexOfDayInJanuary = datesInJanuary.findIndex(
-            date => date.id === day.id
-          );
-        }
-      });
-      datesInJanuary[indexOfDayInJanuary] = day;
-      setJanuary([...datesInJanuary]);
-      console.log(datesInJanuary);
     });
   }, []);
 
